@@ -1,20 +1,8 @@
-<script lang="ts">
-import Vue from 'vue';
-import {ApiView} from '@/lib-components'
-
-export default Vue.extend({
-  name: 'ServeDev',
-  components: {
-    ApiView,
-  },
-});
-</script>
-
 <template>
-  <div id="app">
+  <div>
     <api-view
-      url="https://api.github.com/users/drdilyor/repos"
-      v-slot="{data: repos}"
+        url="https://api.github.com/users/drdilyor/repos"
+        v-slot="{ data: repos }"
     >
       <ul>
         <li v-for="repo in repos" :key="repo.id">
@@ -24,3 +12,12 @@ export default Vue.extend({
     </api-view>
   </div>
 </template>
+<script>
+import { ApiView } from './vue-api-tools.esm';
+
+export default {
+  components: {
+    ApiView
+  }
+};
+</script>

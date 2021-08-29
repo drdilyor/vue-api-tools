@@ -5,7 +5,7 @@ This package helps to reduce boilerplate in small to medium-sized projects.
 
 ```html
 <template>
-  <api-view url="https://github.com/users/drdilyor/repos" v-slot="{data: repos}">
+  <api-view url="https://api.github.com/users/drdilyor/repos" v-slot="{data: repos}">
     <ul>
       <li v-for="repo in repos" :key="repo.id">
         <a :href="repo.html_url">{{ repo.name }}</a>
@@ -13,6 +13,7 @@ This package helps to reduce boilerplate in small to medium-sized projects.
     </ul>
   </api-view>
 </template>
+
 <script>
 import {ApiView} from 'vue-api-tools'
 
@@ -28,7 +29,9 @@ It renders
 - 'Loading.' when the request is pending
 - 'Something went wrong' when the request failed with 4xx or 5xx HTTP codes
 - 'Failed to load' if network error occured 
-- and finally the `default` slot if 
+- and finally the `default` slot if request was successfull.
+
+[See demo here](https://codesandbox.io/s/still-water-ke8uv?file=/src/App.vue)
 
 ## Installation
 ```shell
@@ -43,7 +46,7 @@ to be swiss army knife for working with APIs. It is simple and small
 library, easy to get started and contribute.
 
 If this library doesn't fit you 100%, you can always just copy and
-paste `src/lib-components/*` files. It is that simple ¯\_(ツ)_/¯
+paste `src/lib-components/*` files. It is that simple ¯\\\_(ツ)_/¯
 
 ## Docs
 `ApiView` component offers 4 slots:
