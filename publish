@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+yarn prebuild && \
+yarn build && \
+yarn postbuild && \
+yarn publish
