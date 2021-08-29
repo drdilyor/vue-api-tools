@@ -53,7 +53,7 @@ paste `src/lib-components/*` files. It is that simple ¯\\\_(ツ)_/¯
 - `networkError` with `{error: Error}`
 - `error` with `{response: Response, data: any}`
 - `pending` with `{}`
-- `default` with `{data: any}`
+- `default` with `{response: Response, data: any}`
 
 They all must be *scoped* slots.
 
