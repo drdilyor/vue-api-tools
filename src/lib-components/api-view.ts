@@ -13,7 +13,7 @@ export default /*#__PURE__*/Vue.extend({
     url: {
       type: String,
       required: true,
-    }
+    },
   },
   data(): ApiState<any> {
     return {
@@ -39,7 +39,10 @@ export default /*#__PURE__*/Vue.extend({
         this.$scopedSlots.networkError(data) : h('div', ['Failed to load.'])
     }
     if (this.response !== null && !this.response.ok) {
-      const data = {response: this.response}
+      const data = {
+        response: this.response,
+        data: this.data,
+      }
       return this.$scopedSlots.error !== undefined ?
         this.$scopedSlots.error(data) : h('div', ['Something went wrong.'])
     }
@@ -72,9 +75,9 @@ export default /*#__PURE__*/Vue.extend({
       .then(data => this.data = data)
       .catch(err => this.error = err)
       .finally(() => this.pending = false)
-    }
+    },
   },
   created() {
     this.fetchData()
-  }
+  },
 })

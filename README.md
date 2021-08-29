@@ -51,7 +51,7 @@ paste `src/lib-components/*` files. It is that simple ¯\\\_(ツ)_/¯
 ## Docs
 `ApiView` component offers 4 slots:
 - `networkError` with `{error: Error}`
-- `error` with `{response: Response}`
+- `error` with `{response: Response, data: any}`
 - `pending` with `{}`
 - `default` with `{data: any}`
 
