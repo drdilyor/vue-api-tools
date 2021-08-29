@@ -3,14 +3,25 @@
 This package helps to reduce boilerplate in small to medium-sized projects.
 *Write less, do more*. This is your first taste of this library:
 
-```
-<api-view url="https://github.com/users/drdilyor/repos" v-slot="{data: repos}">
-  <ul>
-    <li v-for="repo in repos" :key="repo.id">
-      <a :href="repo.html_url">{{ repo.name }}</a>
-    </li>
-  </ul>
-</api-view>
+```html
+<template>
+  <api-view url="https://github.com/users/drdilyor/repos" v-slot="{data: repos}">
+    <ul>
+      <li v-for="repo in repos" :key="repo.id">
+        <a :href="repo.html_url">{{ repo.name }}</a>
+      </li>
+    </ul>
+  </api-view>
+</template>
+<script>
+import {ApiView} from 'vue-api-tools'
+
+export default {
+  componenst: {
+    ApiView,
+  }
+}
+</script>
 ```
 
 It renders
@@ -33,3 +44,30 @@ library, easy to get started and contribute.
 
 If this library doesn't fit you 100%, you can always just copy and
 paste `src/lib-components/*` files. It is that simple ¯\_(ツ)_/¯
+
+## Docs
+`ApiView` component offers 4 slots:
+- `networkError` with `{error: Error}`
+- `error` with `{response: Response}`
+- `pending` with `{}`
+- `default` with `{data: any}`
+
+They all must be *scoped* slots.
+
+There is also fifth slot: `universal`. If provided, it will be used
+instead of other 4 slots. It will be called with `ApiState` object:
+```ts
+interface ApiState<T> {
+  pending: boolean,
+  response: Response | null,
+  error: Error | null,
+  data: T | null,
+}
+```
+You must provide at least `default` or `universal` slots.
+
+## Overriding default values for slots
+TODO: this is currently under todo and is planned to be released in v0.2
+
+## License
+MIT
