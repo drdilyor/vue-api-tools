@@ -31,7 +31,7 @@ It renders
 - 'Failed to load' if network error occured 
 - and finally the `default` slot if request was successfull.
 
-[See demo here](https://codesandbox.io/s/still-water-ke8uv?file=/src/App.vue)
+[See demo here](https://codesandbox.io/s/vue-api-tools-example-ke8uv?file=/src/App.vue)
 
 ## Installation
 ```shell
@@ -68,6 +68,27 @@ interface ApiState<T> {
 }
 ```
 You must provide at least `default` or `universal` slots.
+
+### Examples
+```vue
+<api-view url="https://api.github.com/users/drdilyor/repos">
+  <template #network-error="{error}">
+    <p>Failed to repositories. Make sure you have internet connection.</p>
+  </template>
+  <template #error="{response, data}">
+    <p v-if="response.status == 404">Error 404: No such user.</p>
+    <p v-else-if="response.status == 403">You don't have access to repos.</p>
+    <p v-else>Error {{ response.status }}: {{ response.statusText }}</p>
+  </template>
+  <template v-slot="{data: repos}">
+    <ul>
+      <li v-for="repo in repos" :key="repo.id">
+        <a :href="repo.html_url">{{ repo.name }}</a>
+      </li>
+    </ul>
+  </template>
+</api-view>
+```
 
 ## Overriding default values for slots
 TODO: this is currently under todo and is planned to be released in v0.2
