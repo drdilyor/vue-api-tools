@@ -90,8 +90,19 @@ You must provide at least `default` or `universal` slots.
 </api-view>
 ```
 
-## Overriding default values for slots
-TODO: this is currently under todo and is planned to be released in v0.2
+## Overriding default components for slots
+Most often you use the same loading animation or error text everywhere.
+To achieve that, provide in `main.js` one or more of these:
+
+```javascript
+import NetworkError from '...'
+import ApiError from '...'
+import CoolLoadingAnimation from '...'
+
+app.provide('apiNetworkErrorComponent', NetworkError)
+app.provide('apiErrorComponent', ApiError)
+app.provide('apiPendingComponent', CoolLoadingAnimation)
+```
 
 ## License
 MIT
