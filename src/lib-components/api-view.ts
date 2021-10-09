@@ -45,20 +45,6 @@ export default /*#__PURE__*/Vue.extend({
       required: true,
     },
   },
-  inject: {
-    networkErrorComponent: {
-      from: 'apiNetworkErrorComponent',
-      default: networkErrorComponent,
-    },
-    errorComponent: {
-      from: 'apiErrorComponent',
-      default: errorComponent,
-    },
-    pendingComponent: {
-      from: 'apiPendingComponent',
-      default: pendingComponent,
-    },
-  },
   data(): ApiState<any> {
     return {
       pending: false,
@@ -87,7 +73,7 @@ export default /*#__PURE__*/Vue.extend({
     if (this.error !== null) {
       const data = {error: this.error}
       return networkError !== undefined ? networkError(data)
-        : h((this as any).networkErrorComponent, {props: data})
+        : h(networkErrorComponent, {props: data})
     }
 
     if (this.response !== null && !this.response.ok) {
@@ -96,12 +82,12 @@ export default /*#__PURE__*/Vue.extend({
         data: this.data,
       }
       return error !== undefined ? error(data)
-        : h((this as any).errorComponent, {props: data})
+        : h(errorComponent, {props: data})
     }
 
     if (this.pending) {
       return pending !== undefined ? pending({})
-        : h((this as any).pendingComponent, {props: {}})
+        : h(pendingComponent, {props: {}})
     }
 
     if (defaultSlot === undefined) {
@@ -117,7 +103,7 @@ export default /*#__PURE__*/Vue.extend({
     fetchData() {
       if (this.pending) {
         console.warn('[vue-api-tools] Attempt to fetch before previous' +
-          'operation finishes.')
+          ' operation finishes.')
       }
       this.pending = true
       this.response = null

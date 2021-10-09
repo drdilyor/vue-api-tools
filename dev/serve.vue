@@ -21,16 +21,20 @@
         </ul>
       </template>
     </api-view>
+    <api-form url=""'>
+    </api-form>
   </div>
 </template>
 <script>
-import ApiView from '@/lib-components/api-view.ts'
+import ApiView from '@/lib-components/api-view'
+import ApiForm from '@/lib-components/api-form'
 
 export default {
   provide: {
   },
   components: {
     ApiView,
+    ApiForm,
   },
 }
 </script>

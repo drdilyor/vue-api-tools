@@ -39,6 +39,9 @@ npm install vue-api-tools
 #-- or --#
 yarn add vue-api-tools
 ```
+**Note**: I encourage others to just copy the files into your app. That way one less
+npm package will be added to your app. Users are encouraged to make changes and mix with
+other libraries. Be sure to leave star so that I know how many people are using this library 😊.
 
 ## Drawbacks
 Let's be honest, this library is not really flexible, nor it is tries
@@ -46,7 +49,7 @@ to be swiss army knife for working with APIs. It is simple and small
 library, easy to get started and contribute.
 
 If this library doesn't fit you 100%, you can always just copy and
-paste `src/lib-components/*` files. It is that simple ¯\\\_(ツ)_/¯
+paste `src/lib-components/*` files. It is that simple ¯\\\_(ツ)\_/¯
 
 ## Docs
 `ApiView` component offers 4 slots:
@@ -92,17 +95,9 @@ You must provide at least `default` or `universal` slots.
 
 ## Overriding default components for slots
 Most often you use the same loading animation or error text everywhere.
-To achieve that, provide in `main.js` one or more of these:
-
-```javascript
-import NetworkError from '...'
-import ApiError from '...'
-import CoolLoadingAnimation from '...'
-
-app.provide('apiNetworkErrorComponent', NetworkError)
-app.provide('apiErrorComponent', ApiError)
-app.provide('apiPendingComponent', CoolLoadingAnimation)
-```
+To change the default error or loading component, just edit `api-view.ts`
+and change the appropriate variables (most likely you would want to import
+them from `.vue` files).
 
 ## License
 MIT
